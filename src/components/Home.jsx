@@ -3,32 +3,21 @@ import { Container, Row, Card, Form, Button } from "react-bootstrap"
 
 const Home = () => {
 
-    const [monthDay, setMonthDay] = useState(1)  // wue es?
-    // const [monTasks, setMonTasks] = useState([])
-    // const [TueTasks, setTueTasks] = useState([])
-    // const [wedTasks, setWedTasks] = useState([])
-    // const [thuTasks, setThuTasks] = useState([])
-    // const [friTasks, setFriTasks] = useState([])
-    // const [satTasks, setSatTasks] = useState([])
-    // const [sunTasks, setSunTasks] = useState([])
     const [tasks, setTasks] = useState([])
-
-    // const [newTask, setNewTask] = useState({})
 
     //new task
     const [description, setDescription] = useState("")
-    const [id, setId] = useState(0)
     const [title, setTitle] = useState("")
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const [date, setDate] = useState(new Date())
     const [isDone, setIsDone] = useState(false) // guess is not needed
 
-    // function to create task ( dynamic day)
+    //create task
     const createTask = () => {
 
         // create a random ID
-        function generateUniqueRandomId() {
+        function generateUniqueId() {
             let randomId;
 
             do {
@@ -40,7 +29,8 @@ const Home = () => {
 
         //retrieve the day of the week from the introduced date 
         const weekDayNumber = date.getDay()
-        setTasks(...tasks, [id, title, startTime, endTime, date, isDone, weekDayNumber])
+
+        setTasks(...tasks, [generateUniqueId(), title, startTime, endTime, date, isDone, weekDayNumber])
 
     }
 
@@ -75,7 +65,7 @@ const Home = () => {
 
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
-                        <Card.Title className="bg-success">Monday - {monthDay}</Card.Title>
+                        <Card.Title className="bg-success">Monday - task.date</Card.Title>
 
                         {/* this body will be filled by a map and a state([]) */}
                         <div>
