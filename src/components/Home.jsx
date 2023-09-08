@@ -5,13 +5,15 @@ const Home = () => {
 
     const [tasks, setTasks] = useState([])
 
+    const [wantWekends, setWantWekends] = useState(false)
+
+
     //new task
     const [description, setDescription] = useState("")
     const [title, setTitle] = useState("")
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const [date, setDate] = useState(new Date())
-    const [isDone, setIsDone] = useState(false) // guess is not needed
 
     //create task
     const createTask = (e) => {
@@ -31,7 +33,8 @@ const Home = () => {
         //retrieve the day of the week from the introduced date 
         // const weekDayNumber = date.getDay() => date already gives the day of the week
 
-        setTasks(...tasks, [generateUniqueId(), title, startTime, endTime, date, isDone])
+        setTasks(...tasks,
+            { id: generateUniqueId(), title: title, startTime: startTime, endTime: endTime, date: date, isDone: false })
 
     }
 
@@ -60,7 +63,7 @@ const Home = () => {
                 {/* </Row> */}
             </Container>
 
-
+            {/* map all days dynamically and inside to select which day fill, use date */}
             <Container>
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
@@ -73,6 +76,78 @@ const Home = () => {
                         </div>
                     </Card.Body>
                 </Card>
+
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title className="bg-success">Tuesday - task.date</Card.Title>
+
+                        {/* this body will be filled by a map and a state([]) */}
+                        <div>
+                            <input type="checkbox" name="dynStateName" id="dynStateID" />
+                            <label htmlFor="dynStateName">task</label>
+                        </div>
+                    </Card.Body>
+                </Card>
+
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title className="bg-success">Wednesday - task.date</Card.Title>
+
+                        {/* this body will be filled by a map and a state([]) */}
+                        <div>
+                            <input type="checkbox" name="dynStateName" id="dynStateID" />
+                            <label htmlFor="dynStateName">task</label>
+                        </div>
+                    </Card.Body>
+                </Card>
+
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title className="bg-success">Thursday - task.date</Card.Title>
+
+                        {/* this body will be filled by a map and a state([]) */}
+                        <div>
+                            <input type="checkbox" name="dynStateName" id="dynStateID" />
+                            <label htmlFor="dynStateName">task</label>
+                        </div>
+                    </Card.Body>
+                </Card>
+
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title className="bg-success">Friday - task.date</Card.Title>
+
+                        {/* this body will be filled by a map and a state([]) */}
+                        <div>
+                            <input type="checkbox" name="dynStateName" id="dynStateID" />
+                            <label htmlFor="dynStateName">task</label>
+                        </div>
+                    </Card.Body>
+                </Card>
+
+                {wantWekends && <><Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title className="bg-success">Saturday - task.date</Card.Title>
+
+                        {/* this body will be filled by a map and a state([]) */}
+                        <div>
+                            <input type="checkbox" name="dynStateName" id="dynStateID" />
+                            <label htmlFor="dynStateName">task</label>
+                        </div>
+                    </Card.Body>
+                </Card>
+
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Body>
+                            <Card.Title className="bg-success">Sunday - task.date</Card.Title>
+
+                            {/* this body will be filled by a map and a state([]) */}
+                            <div>
+                                <input type="checkbox" name="dynStateName" id="dynStateID" />
+                                <label htmlFor="dynStateName">task</label>
+                            </div>
+                        </Card.Body>
+                    </Card></>}
             </Container>
 
             {/* task creator form */}
