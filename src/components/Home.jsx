@@ -5,21 +5,29 @@ const Home = () => {
 
     const [weeknum, setWeeknum] = useState(0)
     const [monthDay, setMonthDay] = useState(1)
-    const [monTasks, setMonTasks] = useState([])
-    const [TueTasks, setTueTasks] = useState([])
-    const [wedTasks, setWedTasks] = useState([])
-    const [thuTasks, setThuTasks] = useState([])
-    const [friTasks, setFriTasks] = useState([])
-    const [satTasks, setSatTasks] = useState([])
-    const [sunTasks, setSunTasks] = useState([])
+    // const [monTasks, setMonTasks] = useState([])
+    // const [TueTasks, setTueTasks] = useState([])
+    // const [wedTasks, setWedTasks] = useState([])
+    // const [thuTasks, setThuTasks] = useState([])
+    // const [friTasks, setFriTasks] = useState([])
+    // const [satTasks, setSatTasks] = useState([])
+    // const [sunTasks, setSunTasks] = useState([])
+    const [tasks, setTasks] = useState([])
+
+    // const [newTask, setNewTask] = useState({})
+
 
 
     // function to get the week number
-
+    const getWeekNumber = () => { }
     // function to create task ( dynamic day)
+    const createTask = (task) => {
+        setTasks(...tasks, task)
+    }
 
     // function to modify task ( dynamic day)
-
+    const modifyTask = () => { }
+    // use .filter
     return (
 
         <>
@@ -34,10 +42,11 @@ const Home = () => {
             <div>
 
 
-                {/* this body will be filled by a map and a state([]) */}
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
-                        <Card.Title>Monday - {monthDay}</Card.Title>
+                        <Card.Title className="bg-success">Monday - {monthDay}</Card.Title>
+
+                        {/* this body will be filled by a map and a state([]) */}
                         <div>
                             <input type="checkbox" name="dynStateName" id="dynStateID" />
                             <label htmlFor="dynStateName">task</label>
