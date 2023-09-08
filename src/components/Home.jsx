@@ -14,7 +14,8 @@ const Home = () => {
     const [isDone, setIsDone] = useState(false) // guess is not needed
 
     //create task
-    const createTask = () => {
+    const createTask = (e) => {
+        e.preventDefault()
 
         // create a random ID
         function generateUniqueId() {
@@ -28,15 +29,15 @@ const Home = () => {
         }
 
         //retrieve the day of the week from the introduced date 
-        const weekDayNumber = date.getDay()
+        // const weekDayNumber = date.getDay() => date already gives the day of the week
 
-        setTasks(...tasks, [generateUniqueId(), title, startTime, endTime, date, isDone, weekDayNumber])
+        setTasks(...tasks, [generateUniqueId(), title, startTime, endTime, date, isDone])
 
     }
 
     // function to modify task ( dynamic day)
     const modifyTask = () => { }
-    // use .filter 
+    // use .filter to select tasks
 
 
     function getCurrentWeekNumber() {
@@ -53,16 +54,14 @@ const Home = () => {
 
         <>
             <Container>
-                <Row>
-                    <h3>Weekly Planner</h3>
-                    <h4>Week nº {getCurrentWeekNumber()}</h4>
-                </Row>
+                {/* <Row> */}
+                <h3>Weekly Planner</h3>
+                <h4>Week nº {getCurrentWeekNumber()}</h4>
+                {/* </Row> */}
             </Container>
 
 
-            <div>
-
-
+            <Container>
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
                         <Card.Title className="bg-success">Monday - task.date</Card.Title>
@@ -74,26 +73,26 @@ const Home = () => {
                         </div>
                     </Card.Body>
                 </Card>
-            </div>
+            </Container>
 
-
+            {/* task creator form */}
             <Container>
-                <Form className="mt-5" onSubmit={() => createTask()}>
+                <Form className="mt-5" onSubmit={(e) => createTask(e)}>
 
-                    <Form.Control type="text" placeholder="Task title" />
+                    <Form.Control type="text" placeholder="Task title" onChange={(e) => setTitle(e.target.value)} />
 
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Date</Form.Label>
-                        <input type="date" name="" id="" />
+                        <input type="date" name="" id="" value={date} onChange={(e) => setDate(e.target.value)} />
                         <Form.Label>Start time</Form.Label>
-                        <input type="time" name="" id="" />
+                        <input type="time" name="" id="" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
                         <Form.Label>Finish time</Form.Label>
-                        <input type="time" name="" id="" />
+                        <input type="time" name="" id="" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
                     </Form.Group>
 
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} value={description} />
+                        <Form.Control as="textarea" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
                     </Form.Group>
                     <Button type="submit">Submit</Button>
                 </Form>
