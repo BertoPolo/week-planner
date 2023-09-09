@@ -20,6 +20,7 @@ const Home = () => {
         e.preventDefault()
 
         // create a random ID
+
         function generateUniqueId() {
             let randomId;
 
@@ -29,18 +30,17 @@ const Home = () => {
 
             return randomId;
         }
-
+        const lala = generateUniqueId()
         //retrieve the day of the week from the introduced date 
         // const weekDayNumber = date.getDay() => date already gives the day of the week
-
-        setTasks(...tasks,
-            { id: generateUniqueId(), title: title, startTime: startTime, endTime: endTime, date: date, isDone: false })
+        setTasks([...tasks,
+        { id: lala, title: title, startTime: startTime, endTime: endTime, date: date, isDone: false, description: description }])
 
     }
 
     // function to modify task ( dynamic day)
     const modifyTask = () => { }
-    // use .filter to select tasks
+    // use .filter to select the task
 
 
     function getCurrentWeekNumber() {
@@ -71,10 +71,12 @@ const Home = () => {
                             <Card.Body>
                                 <Card.Title className="bg-success">Monday - task.date</Card.Title>
 
-                                {/* this body will be filled by a map and a state([]) */}
+
                                 <div>
-                                    <input type="checkbox" name="dynStateName" id="dynStateID" />
-                                    <label htmlFor="dynStateName">task</label>
+                                    {/* {tasks.map((task) => { */}
+                                    {/* return <p>{task && task.title}</p> */}
+                                    {/* })} */}
+
                                 </div>
                             </Card.Body>
                         </Card>
@@ -170,11 +172,12 @@ const Home = () => {
 
 
             <Button onClick={() => setWantWekends(!wantWekends)}>Weekends On/Off</Button>
+
             {/* task creator form */}
             <Container>
                 <Form className="mt-5" onSubmit={(e) => createTask(e)}>
 
-                    <Form.Control type="text" placeholder="Task title" onChange={(e) => setTitle(e.target.value)} />
+                    <Form.Control type="text" placeholder="Task title" required onChange={(e) => setTitle(e.target.value)} />
 
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Date</Form.Label>
