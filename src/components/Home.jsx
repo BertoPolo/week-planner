@@ -20,7 +20,6 @@ const Home = () => {
         e.preventDefault()
 
         // create a random ID
-
         function generateUniqueId() {
             let randomId;
 
@@ -31,8 +30,7 @@ const Home = () => {
             return randomId;
         }
         const lala = generateUniqueId()
-        //retrieve the day of the week from the introduced date 
-        // const weekDayNumber = date.getDay() => date already gives the day of the week
+
         setTasks([...tasks,
         { id: lala, title: title, startTime: startTime, endTime: endTime, date: date, isDone: false, description: description }])
 
@@ -53,6 +51,16 @@ const Home = () => {
         return weekNumber;
     }
 
+    //gets the day of the week of the task to be mapped in each day of the week
+    const getTaskWeekDay = () => {
+        let dateToSplitedText = date.toString().split(" ")[0]
+        // let dayOfWeek = dateToSplitedText[0]
+
+        return dateToSplitedText
+    }
+    const taskWeekDay = getTaskWeekDay()
+    console.log(taskWeekDay)
+
     return (
 
         <>
@@ -69,14 +77,13 @@ const Home = () => {
                     <Col>
                         <Card style={{ width: '18rem' }}>
                             <Card.Body>
-                                <Card.Title className="bg-success">Monday - task.date</Card.Title>
+                                <Card.Title className="bg-success">Monday - monthDay </Card.Title>{/*  / task.date, cant be cause it dont know WHICH task */}
 
 
                                 <div>
-                                    {/* {tasks.map((task) => { */}
-                                    {/* return <p>{task && task.title}</p> */}
-                                    {/* })} */}
-
+                                    {(taskWeekDay === "Mon") && tasks.map((task) => {
+                                        return <p>{task && task.title}</p>
+                                    })}
                                 </div>
                             </Card.Body>
                         </Card>
