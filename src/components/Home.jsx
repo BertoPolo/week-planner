@@ -68,8 +68,8 @@ const Home = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
+                        <Nav.Link href="#home">TO DO lists</Nav.Link>
+                        <Nav.Link href="#link">Full calendar</Nav.Link>
                     </Nav>
                     <Button onClick={() => setWantWekends(!wantWekends)}>Weekends On/Off</Button>
                 </Navbar.Collapse>
@@ -91,22 +91,19 @@ const Home = () => {
                             <Card.Body>
                                 <Card.Title className="bg-success">Monday - monthDay </Card.Title>{/*  / task.date, cant be cause it dont know WHICH task */}
 
-
                                 <div>
-
                                     {/* sort by start time */}
-                                    {
-                                        tasks && tasks.map((task) => {
-                                            return (
-                                                <div key={task.id}>
-                                                    {(task.dayOfWeek === "Mon") &&
-                                                        <div>
-                                                            <p><b className="pointer" onClick={() => setIsDescription(!isDescription)}>{task.title}</b></p>
-                                                            {isDescription && <p>{task.description}</p>}
-                                                        </div>}
-                                                </div>
-                                            )
-                                        })}
+                                    {tasks && tasks.map((task) => {
+                                        return (
+                                            <div key={task.id}>
+                                                {(task.dayOfWeek === "Mon") &&
+                                                    <div>
+                                                        <p><b className="pointer" onClick={() => setIsDescription(!isDescription)}>{task.title}</b></p>
+                                                        {isDescription && <p>{task.description}</p>}
+                                                    </div>}
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </Card.Body>
                         </Card>
