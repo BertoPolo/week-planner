@@ -6,6 +6,7 @@ const Home = () => {
     const [tasks, setTasks] = useState([])
 
     const [wantWekends, setWantWekends] = useState(false)
+    const [isDescription, setIsDescription] = useState(false)
 
 
     //new task
@@ -14,6 +15,7 @@ const Home = () => {
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const [date, setDate] = useState(new Date())
+
 
     //create task
     const createTask = (e) => {
@@ -29,11 +31,16 @@ const Home = () => {
 
             return randomId;
         }
-        const lala = generateUniqueId()
+        const generatedId = generateUniqueId()
+
+        // const dayOfWeek = () => date.getDay
+        // let lala = dayOfWeek()
+
+        // const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        // const dayOfWeek = daysOfWeek[date.getDay()]
 
         setTasks([...tasks,
-        { id: lala, title: title, startTime: startTime, endTime: endTime, date: date, isDone: false, description: description }])
-
+        { id: generatedId, title: title, startTime: startTime, endTime: endTime, date: date, isDone: false, description: description, dayOfWeek: "Mon" }])
     }
 
     // function to modify task ( dynamic day)
@@ -51,13 +58,6 @@ const Home = () => {
         return weekNumber;
     }
 
-    //gets the day of the week of the task to be mapped in each day of the week
-    const getTaskWeekDay = () => {
-        let dayOfWeek = date.toString().split(" ")[0]
-
-        return dayOfWeek
-    }
-    const taskWeekDay = getTaskWeekDay()
 
     return (
 
@@ -79,10 +79,20 @@ const Home = () => {
 
 
                                 <div>
-                                    {/* (taskWeekDay === "Mon") && */}
-                                    {tasks.map((task) => {
-                                        return <p>{task && task.title}</p>
-                                    })}
+
+                                    {/*  */}
+                                    {
+                                        tasks && tasks.map((task) => {
+                                            return (
+                                                <>
+                                                    {(task.dayOfWeek === "Mon") &&
+                                                        <div>
+                                                            <p><b onClick={() => setIsDescription(!isDescription)}>{task.title}</b></p>
+                                                            {isDescription && <p>{task.description}</p>}
+                                                        </div>}
+                                                </>
+                                            )
+                                        })}
                                 </div>
                             </Card.Body>
                         </Card>
