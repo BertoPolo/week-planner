@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Container, Row, Card, Form, Button, Col } from "react-bootstrap"
+import { Container, Row, Card, Form, Button, Col, Navbar, Nav } from "react-bootstrap"
 
 const Home = () => {
 
@@ -62,6 +62,20 @@ const Home = () => {
     return (
 
         <>
+            {/* separate navbar in other component */}
+            <Navbar bg="light" expand="lg">
+                <Navbar.Brand href="#home">Agenda</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#link">Link</Nav.Link>
+                    </Nav>
+                    <Button onClick={() => setWantWekends(!wantWekends)}>Weekends On/Off</Button>
+                </Navbar.Collapse>
+            </Navbar>
+
+
             <Container>
                 {/* <Row> */}
                 <h3>Weekly Planner</h3>
@@ -69,7 +83,7 @@ const Home = () => {
                 {/* </Row> */}
             </Container>
 
-            {/* map all days dynamically and inside to select which day fill, use date */}
+
             <Container>
                 <Row>
                     <Col>
@@ -80,17 +94,17 @@ const Home = () => {
 
                                 <div>
 
-                                    {/*  */}
+                                    {/* sort by start time */}
                                     {
                                         tasks && tasks.map((task) => {
                                             return (
-                                                <>
+                                                <div key={task.id}>
                                                     {(task.dayOfWeek === "Mon") &&
                                                         <div>
-                                                            <p><b onClick={() => setIsDescription(!isDescription)}>{task.title}</b></p>
+                                                            <p><b className="pointer" onClick={() => setIsDescription(!isDescription)}>{task.title}</b></p>
                                                             {isDescription && <p>{task.description}</p>}
                                                         </div>}
-                                                </>
+                                                </div>
                                             )
                                         })}
                                 </div>
@@ -187,7 +201,6 @@ const Home = () => {
             </Container>
 
 
-            <Button onClick={() => setWantWekends(!wantWekends)}>Weekends On/Off</Button>
 
             {/* task creator form */}
             <Container>
