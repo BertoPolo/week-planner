@@ -53,13 +53,11 @@ const Home = () => {
 
     //gets the day of the week of the task to be mapped in each day of the week
     const getTaskWeekDay = () => {
-        let dateToSplitedText = date.toString().split(" ")[0]
-        // let dayOfWeek = dateToSplitedText[0]
+        let dayOfWeek = date.toString().split(" ")[0]
 
-        return dateToSplitedText
+        return dayOfWeek
     }
     const taskWeekDay = getTaskWeekDay()
-    console.log(taskWeekDay)
 
     return (
 
@@ -81,7 +79,8 @@ const Home = () => {
 
 
                                 <div>
-                                    {(taskWeekDay === "Mon") && tasks.map((task) => {
+                                    {/* (taskWeekDay === "Mon") && */}
+                                    {tasks.map((task) => {
                                         return <p>{task && task.title}</p>
                                     })}
                                 </div>
